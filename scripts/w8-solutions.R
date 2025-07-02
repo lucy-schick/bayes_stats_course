@@ -1,0 +1,5 @@
+source("w8-solutions-data.R")
+source("w8-solutions-model.R")
+source("w8-solutions-predictions.R")
+source("w8-solutions-gof.R")
+source("w8-solutions-sensitivity.R")

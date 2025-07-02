@@ -51,7 +51,7 @@ mod <- jagsUI::jags(
 )
 
 # Save model run ---------------------------------------------------------------
-saveRDS(mod, "output/w2/mod.RDS")
+saveRDS(mod, "output/w2/mod.rds")
 
 # Evaluate convergence ---------------------------------------------------------
 params_to_evaluate <- c("beta", "sigma")
@@ -81,12 +81,8 @@ MCMCvis::MCMCplot(mod, params = params_to_monitor)
 # sigma: 1119, 1038-1207 - quite a bit higher! Reason: something else has to 
 # account for the variability in the data!
 
-# because beta distribution gets super constrained (standard deviation of 10), something else has to take up the variability, aka sigma 
-
 # 2. Return the standard deviation for the `beta` prior back to 1000. 
 # Now change the prior for `sigma` to an exponential distribution with a rate 
 # of 1. Do the parameter estimates change considerably? 
 # My answer: beta: 4202, 4151-4255 - this is quite similar to the original estimate.
 # sigma: 508, 488-529 - quite a bit lower! Reason: prior for sigma is much narrower.
-
-# iin this example, signma is the one that gets constrained. But beta does not baloon. 

@@ -7,14 +7,8 @@ data <- readRDS("output/w2/data.rds")
 sink("w2-demo.txt")
 cat("model{ 
   # Priors
-  beta ~ dnorm(5000,1000^-2)
-  sigma ~ dexp(0.001)
   
   # Likelihood 
-  for (i in 1:nObs) {
-   mu[i] <-  beta 
-   mass[i] ~ dnorm(mu[i], sigma^-2)
-  }
   
 }")
 sink()
@@ -52,7 +46,7 @@ mod <- jagsUI::jags(
 )
 
 # Save model run ---------------------------------------------------------------
-saveRDS(mod, "output/w2/mod.RDS")
+saveRDS(mod, "output/w2/mod.rds")
 
 # Evaluate convergence ---------------------------------------------------------
 # Check Rhat < 1.1 and reasonable effective sample size for each parameter.
@@ -70,8 +64,6 @@ MCMCvis::MCMCplot(mod, params = params_to_monitor)
 # deviation of 100 (option B from our exercise above) and re-run the model. 
 # Do the parameter estimates change considerably? 
 # What about with a standard deviation of 10 (option A from above)?
-
-
 
 # 2. Return the standard deviation for the `beta` prior back to 1000. 
 # Now change the prior for `sigma` to an exponential distribution with a rate 

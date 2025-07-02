@@ -8,7 +8,7 @@ str(climate)
 summary(climate[c("temp_anomaly", "elev", "lat")])
 
 gp <- ggplot(climate) +
-  aes(x = temp_anomaly, y = elev) + 
+  aes(x = elev, y = temp_anomaly) + 
   geom_point() +
   xlab("Elevation (m)") +
   ylab("Temperature Anomaly (˚C)") + 
@@ -17,7 +17,7 @@ gp <- ggplot(climate) +
 gp
 
 gp <- ggplot(climate) +
-  aes(x = temp_anomaly, y = lat) +
+  aes(x = lat, y = temp_anomaly) +
   geom_point() +
   xlab("Latitude (˚N)") +
   ylab("Temperature Anomaly (˚C)") + 

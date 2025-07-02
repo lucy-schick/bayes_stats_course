@@ -1,0 +1,23 @@
+model{
+  # Priors
+  beta_0 ~ dnorm(0, 2^-2)
+  beta_seed_mass ~ dnorm(0, 2^-2)
+  beta_herbicide[1] <- 0
+  for (i in 2:nherbicide) {
+    beta_herbicide[i] ~ dnorm(0, 2^-2)
+  }
+  beta_soil_type[1] <- 0
+  for (i in 2:nsoil_type) {
+    beta_soil_type[i] ~ dnorm(0, 2^-2)
+  }
+  sd_tray_id ~ dexp(1)
+  for (i in 1:ntray_id) {
+    beta_tray_id[i] ~ dnorm(0, sd_tray_id^-2)
+  }
+ 
+  # Likelihood
+  for (i in 1:nObs) {
+    logit(prob[i]) <- beta_0 + beta_seed_mass * seed_mass[i] + beta_herbicide[herbicide[i]] + beta_soil_type[soil_type[i]] + beta_tray_id[tray_id[i]]
+    germinated[i] ~ dbern(prob[i])
+  }
+}

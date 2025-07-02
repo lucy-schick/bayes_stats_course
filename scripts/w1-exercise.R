@@ -11,19 +11,14 @@ print(x)
 x[6]
 
 # Exercise 1. Extract the 9th element of `x`
-x[9]
+
 
 # Exercise 2. Extract the 1st and 5th elements of `x` (simultaneously).
-x[c(1,5)]
+
 
 ## Subsetting using reals ------------------------------------------------------
 # Exercise 3. What happens when you use a real number to subset `x`? Try 6.1.
 
-x[6.1]
-#rounds down
-
-x[6.6]
-#rounds down
 
 ## Subsetting using logicals ---------------------------------------------------
 # Let's convert `x` into a logical (TRUE/FALSE) vector based on 
@@ -33,13 +28,8 @@ print(y)
 
 # Exercise 4. Can you extract the even elements of the `x` vector, using `y`?
 
-# pulls out where everything is true
-x[y]
-
 
 # Exercise 5. Now extract the odd elements of the `x` vector, using `y`.
-
-x[!y]
 
 
 ## Subsetting using factors ----------------------------------------------------
@@ -54,19 +44,14 @@ z <- factor(z) # convert z to a factor
 # Exercise 6. What happens when you coerce `z` to class integer? 
 # Hint: use `as.integer()`
 
-as.integer(z)
-
 
 # Exercise 7. What do you notice about the order of the results from the previous
 # question, with respect to the levels of `z`?
 levels(z)
 
-# assigns an integer to the factor levels
 
 # Exercise 8. Subset the following vector with `z`. What happens?
 effect <- c("even number", "odd number")
-
-effect[z]
 
 
 ## Assigning values using subsetting -------------------------------------------
@@ -78,13 +63,9 @@ print(x)
 
 # Exercise 9. Change the 2nd value of `x` to 100.
 
-x[2] <- 100
-print(x)
 
 # Exercise 10. Change the first 4 elements of `x` to 0.
 
-x[c(1:4)] <- 0
-print(x)
 
 ## Subsetting matrices ---------------------------------------------------------
 # Matrices have two dimensions.
@@ -100,15 +81,14 @@ mat[3, 4]
 mat[1, ]
 
 # Exercise 11. Applying similar logic, how would you subset the 2nd column?
-mat[, 2]
+
 
 # Exercise 12. Pull out the value in the first row, third column.
-mat[1, 3]
+
 
 # Exercise 13. Pull out the values in the first row, fourth column and fourth 
 # row, 5th column simultaneously.
 
-mat[c(1,4), c(4,5)]
 
 # For loops --------------------------------------------------------------------
 # Let's start with a vector including the first 10 letters of the alphabet
@@ -149,15 +129,9 @@ print(months)
 # Exercise 9. Using a for loop, can you print the months in order?
 # (use the syntax from the second loop above)
 
-for (i in 1:length(months)) {
-  print(months[i])
-}
 
 # Exercise 10. Alter your loop such that the months are printed in reverse order
 
-for (i in length(months):1) {
-  print(months[i])
-}
 
 ## Practice using for loops and subsetting with a dataframe --------------------
 # Set a seed for reproducibility
@@ -174,19 +148,8 @@ data <- tibble(
 # Exercise 11. Using a for loop, replace the current values of `y` with 
 # the value of `x - 1`
 
-for (i in 1:nrow(data)){
-  data$y[i] = data$x[i]- 1
-}
-
-print(data)
-
 
 # Exercise 12. Now replace the current values of `y` with the month abbreviation
 # the value of x corresponds to.
 
-for (i in 1:nrow(data)){
-  data$y[i] = months[data$x[i]]
-}
-
-print(data)
 

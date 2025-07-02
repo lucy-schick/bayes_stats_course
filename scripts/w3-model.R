@@ -6,7 +6,7 @@ data <- readRDS("output/w3/data.rds")
 # Code model -------------------------------------------------------------------
 # 1. Start with intercept-only model.
 # 2. Add continuous effect of elevation.
-# 3. Add continuous effect of latitude
+# 3. Add continuous effect of latitude.
 sink("w3-demo.txt")
 cat("model{
   # Priors
@@ -27,10 +27,17 @@ nt <- 1            # Thinning rate
 nb <- 500 * nt     # Number of burn-iterations
 ni <- 1000 * nt    # Total number of iterations
 
+# Initial values ---------------------------------------------------------------
+gen_inits <- function() {
+  inits <- list()
+  # Fill in inits here
+  return(inits)
+}
+
 # Run JAGS model ---------------------------------------------------------------
 mod <- jagsUI::jags(
   data = data, 
-  inits = NULL,
+  inits = gen_inits,
   parameters.to.save = params_to_monitor, 
   model.file = "w3-demo.txt", 
   n.chains = nc, 
@@ -40,7 +47,7 @@ mod <- jagsUI::jags(
 )
 
 # Save model run ---------------------------------------------------------------
-saveRDS(mod, "output/w3/mod.RDS")
+saveRDS(mod, "output/w3/mod.rds")
 
 # Evaluate convergence ---------------------------------------------------------
 # Check all Rhat < 1.1 and all n.eff > 150
